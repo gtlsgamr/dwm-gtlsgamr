@@ -10,7 +10,7 @@ static const unsigned int gappov    = 10;       /* vert outer gap between window
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "SF UI Display:size=9:style=Regular:antialias=true:autohint=true","JoyPixels:size=9:antialias=true:autohint=true"};
+static const char *fonts[]          = { "SF UI Display:size=9:style=Regular:antialias=true:autohint=true","NotoEmoji:size=9:antialias=true:autohint=true"};
 static const char dmenufont[]       = "FiraCode:size=9";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#444444";
