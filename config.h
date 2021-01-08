@@ -1,33 +1,34 @@
 /* See LICENSE file for copyright and license details. */
 #include "layouts.c"
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
-static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
+static const int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "SF UI Display:size=9:style=Regular:antialias=true:autohint=true","NotoEmoji:size=9:antialias=true:autohint=true"};
+static const char *fonts[]          = { "SanFranciscoDisplay-Black:size=9:style=Regular:antialias=true:autohint=true","NotoEmoji:size=9:antialias=true:autohint=true"};
 static const char dmenufont[]       = "FiraCode:size=9";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#000";
+static const char col_cyan[]        = "#332d39";
+static const char col_border[]      = "#a848b5";
 static const unsigned int baralpha = 200;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray1 },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_border  },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, borderalpha, borderalpha },
 };
 
 /* tagging */
@@ -76,31 +77,33 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0, XF86XK_AudioMute,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },{ 0, XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pamixer --allow-boost -i 3; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioLowerVolume,	spawn,		SHCMD("pamixer --allow-boost -d 3; kill -44 $(pidof dwmblocks)") },{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 5") },
-	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 5") },
+	{ 0, XF86XK_AudioMute,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pamixer --allow-boost -i 3; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioLowerVolume,	spawn,		SHCMD("pamixer --allow-boost -d 3; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 5; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 5; kill -44 $(pidof dwmblocks)") },
 	{ MODKEY,			XK_w,		spawn,		SHCMD("$BROWSER") },
-	{MODKEY, XK_r, spawn, SHCMD("st -e lf")},
-	{ MODKEY,             		XK_d, spawn,          {.v = dmenucmd } },
-	{ MODKEY,             		XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,              			XK_z,      incrgaps,       {.i = +1 } },
-	{ MODKEY,             			XK_x,      incrgaps,       {.i = -1 } },
-	{ MODKEY,              			XK_a,      togglegaps,     {0} },
-	{ 0,							XK_Print,  spawn,		SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
-	{ MODKEY|ShiftMask,    			XK_a,      defaultgaps,    {0} },
-	{ MODKEY,                       XK_space, zoom,           {0} },
+	{MODKEY,			XK_r, 		spawn, 		SHCMD("st -e lf")},
+	{ MODKEY,             		XK_d, spawn,          		{.v = dmenucmd } },
+	{ MODKEY,             		XK_Return, spawn,          	{.v = termcmd } },
+	{ MODKEY,                       XK_b,      togglebar,      	{0} },
+	{ MODKEY,                       XK_j,      focusstack,     	{.i = +1 } },
+	{ MODKEY,                       XK_k,      focusstack,     	{.i = -1 } },
+	{ MODKEY,                       XK_h,      setmfact,       	{.f = -0.05} },
+	{ MODKEY,                       XK_l,      setmfact,       	{.f = +0.05} },
+	{ MODKEY,              		XK_z,      incrgaps, 		{.i = +1 } },
+	{ MODKEY,             		XK_x,      incrgaps,       	{.i = -1 } },
+	{ MODKEY,              		XK_a,      togglegaps,     	{0} },
+	{ 0,				XK_Print,  spawn,		SHCMD("maim screenshots/pic-full-$(date '+%y%m%d-%H%M-%S').png") },
+	{ MODKEY|ShiftMask,    		XK_a,      defaultgaps,    {0} },
+	{ MODKEY,                       XK_space,  zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,             			XK_q,      killclient,     {0} },
+	{ MODKEY,             		XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[2]} },
-	{MODKEY, 						XK_g, 	   setlayout, 	   {.v = &layouts[3]}},
-	{ MODKEY,             			XK_f,      togglefullscr,  {0} },
+	{MODKEY, 			XK_g, 	   setlayout, 	   {.v = &layouts[3]}},
+	{ MODKEY,             		XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
