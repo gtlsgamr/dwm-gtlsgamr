@@ -12,7 +12,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Product Sans:size=14:style=Regular","NotoEmoji:size=12:antialias=true:autohint=true"};
 static const char dmenufont[]       = "Product Sans:size=14";
-static const char col_gray1[]       = "#000000";
+static const char col_gray1[]       = "#fe6541";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
@@ -22,13 +22,13 @@ static const unsigned int baralpha = 200;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray1 },
-	[SchemeSel]  = { col_gray4, col_gray1,  col_border  },
+	[SchemeNorm] = { col_gray4, "#000", col_gray1 },
+	[SchemeSel]  = { "#000", col_gray1,  col_border  },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
-	[SchemeNorm] = { OPAQUE, 90, baralpha },
-	[SchemeSel]  = { OPAQUE, 90, OPAQUE},
+	[SchemeNorm] = { OPAQUE, OPAQUE, OPAQUE},
+	[SchemeSel]  = { OPAQUE, OPAQUE, OPAQUE},
 };
 
 /* tagging */
@@ -72,7 +72,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", "#000", "-nf", col_gray3, "-sb", col_gray1, "-sf", col_gray2, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
@@ -94,7 +94,9 @@ static Key keys[] = {
 	{ MODKEY,              		XK_z,      incrgaps, 		{.i = +1 } },
 	{ MODKEY,             		XK_x,      incrgaps,       	{.i = -1 } },
 	{ MODKEY,              		XK_a,      togglegaps,     	{0} },
+	{ MODKEY|ShiftMask,             XK_x,      spawn,     		SHCMD("xkill") },
 	{ 0,				XK_Print,  spawn,		SHCMD("maim screenshots/pic-full-$(date '+%y%m%d-%H%M-%S').png") },
+	{ MODKEY, 			XK_Print,  spawn, 		SHCMD("maim -s -o -u | xclip -selection clipboard -t image/png -i")},
 	{ MODKEY|ShiftMask,    		XK_a,      defaultgaps,		{0} },
 	{ MODKEY,                       XK_space,  zoom,           	{0} },
 	{ MODKEY,                       XK_Tab,    view,           	{0} },
