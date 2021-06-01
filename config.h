@@ -10,8 +10,8 @@ static const unsigned int gappov    = 10;       /* vert outer gap between window
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {  "SF UI Display:size=14:style=Regular","NotoEmoji:size=12:antialias=true:autohint=true","JetBrainsMono Nerd Font Mono:pixelsize=24:antialias=true:autohint=true"};
-static const char dmenufont[]       = "SF UI Display:size=14:style=Regular";
+static const char *fonts[]          = {  "JetBrainsMono Nerd Font Mono:size=14","NotoEmoji:size=14:antialias=true:autohint=true","JetBrainsMono Nerd Font Mono:pixelsize=14:antialias=true:autohint=true"};
+static const char dmenufont[]       = "JetBrainsMono Nerd Font Mono:size=14";
 
 static const char col_dark[] = "#2E3440";
 static const char col_dark2[] = "#3B4252";
@@ -87,9 +87,11 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioLowerVolume,	spawn,				SHCMD("pamixer --allow-boost -d 3; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_MonBrightnessUp,	spawn,				SHCMD("xbacklight -inc 5; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_MonBrightnessDown,	spawn,				SHCMD("xbacklight -dec 5; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY,			XK_w,	   spawn,		SHCMD("chromium --force-device-scale-factor=1.25") },
+	{ MODKEY,			XK_w,	   spawn,		SHCMD("chromium") },
 	{ MODKEY,			XK_r, 	   spawn, 		SHCMD("st -e lf")},
 	{ MODKEY,             		XK_d, 	   spawn,	      	{.v = dmenucmd } },
+	{ MODKEY,             		XK_y, 	   spawn,	      	SHCMD("ytfzf -D")},
+	{ MODKEY,             		XK_y, 	   spawn,	      	SHCMD("st -e vim")},
 	{ MODKEY,             		XK_Return, spawn,          	{.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      	{0} },
 	{ MODKEY,                       XK_j,      focusstack,     	{.i = +1 } },
@@ -100,7 +102,7 @@ static Key keys[] = {
 	{ MODKEY,             		XK_x,      incrgaps,       	{.i = -1 } },
 	{ MODKEY,              		XK_a,      togglegaps,     	{0} },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,     		SHCMD("xkill") },
-	{ 0,				XK_Print,  spawn,		SHCMD("maim screenshots/pic-full-$(date '+%y%m%d-%H%M-%S').png") },
+	{ 0,				XK_Print,  spawn,		SHCMD("maim screenshots/screenshot_$(date '+%y%m%d%H%M%S').png") },
 	{ MODKEY, 			XK_Print,  spawn, 		SHCMD("maim -s -o -u | xclip -selection clipboard -t image/png -i")},
 	{ MODKEY|ShiftMask,    		XK_a,      defaultgaps,		{0} },
 	{ MODKEY,                       XK_space,  zoom,           	{0} },
