@@ -94,6 +94,7 @@ static Key keys[] = {
 	{ MODKEY,             		XK_y, 	   spawn,	      	SHCMD("ytfzf -D")},
 	{ MODKEY,             		XK_n, 	   spawn,	      	SHCMD("st -e nvim ")},
 	{ MODKEY|ShiftMask,      	XK_n, 	   spawn,	      	SHCMD("filename=$(date '+%Y_%B_%d').md; touch ~/documents/notes/$filename && echo '-------------' >> ~/documents/notes/$filename && st -n quick_note -e nvim ~/documents/notes/$filename")},
+	{ MODKEY,      	XK_c, 	   spawn,	      	SHCMD("st -n quick_note -e bc -lq")},
 	{ MODKEY,             		XK_Return, spawn,          	{.v = termcmd } },
 	{ MODKEY,                   XK_b,      togglebar,      	{0} },
 	{ MODKEY,                   XK_j,      focusstack,     	{.i = +1 } },
