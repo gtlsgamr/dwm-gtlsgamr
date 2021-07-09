@@ -2,8 +2,6 @@
 #include <X11/XF86keysym.h>
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const int startwithgaps	     = 0;	 /* 1 means gaps are used by default */
-static const unsigned int gappx     = 10;       /* default gap between windows in pixels */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -89,10 +87,6 @@ static Key keys[] = {
 	{ MODKEY, 			XK_Print,  spawn, 		SHCMD("maim -s -o -u | xclip -selection clipboard -t image/png -i")},
 	{ MODKEY,                       XK_space,  zoom,           	{0} },
 	{ MODKEY,                       XK_Tab,    view,           	{0} },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -5 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +5 } },
-	{ MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} },
 	{ MODKEY,             		XK_q,      killclient,     	{0} },
 	{ MODKEY,                       XK_t,      setlayout,      	{.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      	{.v = &layouts[1]} },
