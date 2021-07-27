@@ -83,7 +83,7 @@ static Key keys[] = {
 	{ MODKEY,                   XK_h,      setmfact,       	{.f = -0.05} },
 	{ MODKEY,                   XK_l,      setmfact,       	{.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,     		SHCMD("xkill") },
-	{ 0,				XK_Print,  spawn,		SHCMD("maim screenshots/screenshot_$(date '+%y%m%d%H%M%S').png") },
+	{ 0,				XK_Print,  spawn,		SHCMD("maim screenshots/screenshot_$(date '+%y%m%d%H%M%S').png; maim -o -u | xclip -selection clipboard -t image/png -i") },
 	{ MODKEY, 			XK_Print,  spawn, 		SHCMD("maim -s -o -u | xclip -selection clipboard -t image/png -i")},
 	{ MODKEY,                       XK_space,  zoom,           	{0} },
 	{ MODKEY,                       XK_Tab,    view,           	{0} },
