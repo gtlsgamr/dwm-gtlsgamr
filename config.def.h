@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {  "SF Pro Rounded:size=14:style=Bold","NotoEmoji:size=14:antialias=true:autohint=true"};
-static const char dmenufont[]       = "SF Pro Rounded:size=14:style=Bold";
+static const char *fonts[]          = {  "SF Pro Display:size=14:style=Bold","NotoEmoji:size=14:antialias=true:autohint=true"};
+static const char dmenufont[]       = "SF Pro Display:size=14:style=Bold";
 
 static const char col_macos_white[]	= "#f5f5f5";
 static const char col_macos_gray[]	= "#C0BFC0";
