@@ -1,12 +1,12 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {  "SF Pro Display:size=14:style=Bold","NotoEmoji:size=14:antialias=true:autohint=true"};
-static const char dmenufont[]       = "SF Pro Display:size=14:style=Bold";
+static const char *fonts[]          = {  "SF Pro Display:style=SemiBold:size=14","NotoEmoji:size=14:antialias=true:autohint=true"};
+static const char dmenufont[]       = "SF Pro Display:style=SemiBold:size=14";
 
 static const char col_macos_white[]	= "#f5f5f5";
 static const char col_macos_gray[]	= "#C0BFC0";
@@ -17,8 +17,8 @@ static const char col_gray1[]       = "#080808";
 static const char col_cyan[]        = "#7c8f8f";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_macos_gray, col_gray1,  col_macos_gray },
-	[SchemeSel]  = { col_macos_white, col_gray1,  col_macos_gray  },
+	[SchemeNorm] = { col_macos_gray, col_gray1,  col_gray1 },
+	[SchemeSel]  = { col_macos_white, col_gray1,  col_gray2  },
 };
 
 /* tagging */
@@ -65,52 +65,53 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0, XF86XK_AudioMute,		spawn,				SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioRaiseVolume,	spawn,				SHCMD("pamixer --allow-boost -i 3; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioLowerVolume,	spawn,				SHCMD("pamixer --allow-boost -d 3; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_MonBrightnessUp,	spawn,				SHCMD("xbacklight -inc 5; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_MonBrightnessDown,	spawn,				SHCMD("xbacklight -dec 5; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY,			XK_w,	   spawn,		SHCMD("chromium") },
-	{ MODKEY,			XK_r, 	   spawn, 		SHCMD("st -e fff")},
-	{ MODKEY,             		XK_d, 	   spawn,	      	{.v = dmenucmd } },
-	{ MODKEY,             		XK_y, 	   spawn,	      	SHCMD("ytfzf -D")},
-	{ MODKEY,             		XK_n, 	   spawn,	      	SHCMD("st -e nvim ")},
-	{ MODKEY|ShiftMask,         XK_space, 	   togglefloating,	      	{0}},
-	{ MODKEY|ShiftMask,      	XK_n, 	   spawn,	      	SHCMD("filename=$(date '+%Y_%B_%d').md; touch ~/documents/notes/$filename && echo '-------------' >> ~/documents/notes/$filename && st -n quick_note -e nvim ~/documents/notes/$filename")},
-	{ MODKEY,      	XK_c, 	   spawn,	      	SHCMD("st -n quick_note -e bc -lq")},
-	{ MODKEY,             		XK_Return, spawn,          	{.v = termcmd } },
-	{ MODKEY,                   XK_b,      togglebar,      	{0} },
-	{ MODKEY,                   XK_j,      focusstack,     	{.i = +1 } },
-	{ MODKEY,                   XK_k,      focusstack,     	{.i = -1 } },
-	{ MODKEY,                   XK_h,      setmfact,       	{.f = -0.05} },
-	{ MODKEY,                   XK_l,      setmfact,       	{.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_x,      spawn,     		SHCMD("xkill") },
-	{ 0,				XK_Print,  spawn,		SHCMD("maim screenshots/screenshot_$(date '+%y%m%d%H%M%S').png; maim -o -u | xclip -selection clipboard -t image/png -i") },
-	{ MODKEY, 			XK_Print,  spawn, 		SHCMD("maim -s -o -u | xclip -selection clipboard -t image/png -i")},
-	{ MODKEY,                       XK_space,  zoom,           	{0} },
-	{ MODKEY,                       XK_Tab,    view,           	{0} },
-	{ MODKEY,             		XK_q,      killclient,     	{0} },
-	{ MODKEY,                       XK_t,      setlayout,      	{.v = &layouts[0]} },
-	{ MODKEY|ShiftMask,             XK_f,      setlayout,      	{.v = &layouts[1]} },
-	{ MODKEY,                       XK_u,      setlayout,      	{.v = &layouts[2]} },
-	{MODKEY, 			XK_g, 	   setlayout, 	   	{.v = &layouts[3]}},
-	{ MODKEY,             		XK_f,      togglefullscr,  	{0} },
-	{ MODKEY,                       XK_0,      view,           	{.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            	{.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       	{.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       	{.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         	{.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         	{.i = +1 } },
-	TAGKEYS(                        XK_1,                      	0)
-	TAGKEYS(                        XK_2,                      	1)
-	TAGKEYS(                        XK_3,                      	2)
-	TAGKEYS(                        XK_4,                      	3)
-	TAGKEYS(                        XK_5,                      	4)
-	TAGKEYS(                        XK_6,                      	5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+{ 0,					XF86XK_AudioMute,								spawn,				SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },	
+{ 0,					XF86XK_AudioRaiseVolume,						spawn,				SHCMD("pamixer --allow-boost -i 3; kill -44 $(pidof dwmblocks)") },	
+{ 0,					XF86XK_AudioLowerVolume,						spawn,				SHCMD("pamixer --allow-boost -d 3; kill -44 $(pidof dwmblocks)") },	
+{ 0,					XF86XK_MonBrightnessUp,							spawn,				SHCMD("xbacklight -inc 5; kill -44 $(pidof dwmblocks)") },	
+{ 0,					XF86XK_MonBrightnessDown,						spawn,				SHCMD("xbacklight -dec 5; kill -44 $(pidof dwmblocks)") },	
+{ MODKEY,				XK_w,											spawn,				SHCMD("brave --force-device-scale-factor=1.15") },	
+{ MODKEY,				XK_r,											spawn,				SHCMD("st -e fff")},	
+{ MODKEY,				XK_d,											spawn,				{.v = dmenucmd } },	
+{ MODKEY,				XK_y,											spawn,				SHCMD("ytfzf  -D")},	
+{ MODKEY,				XK_n,											spawn,				SHCMD("st -e nvim ")},	
+{ MODKEY|ShiftMask,		XK_space,										togglefloating,		{0}},	
+{ MODKEY|ShiftMask,		XK_n,											spawn,				SHCMD("filename=$(date '+%Y_%B_%d').md; touch ~/documents/notes/$filename && echo '-------------' >> ~/documents/notes/$filename && st -n quick_note -e nvim ~/documents/notes/$filename")},	
+{ MODKEY,				XK_c,											spawn,				SHCMD("st -n quick_note -e bc -lq")},	
+{ MODKEY,				XK_Return,	 									spawn,				{.v = termcmd } },	
+{ MODKEY|ShiftMask,		XK_Return,	 									spawn,				SHCMD("st -e tmux")},	
+{ MODKEY,				XK_b,											togglebar,			{0} },	
+{ MODKEY,				XK_j,											focusstack,			{.i = +1 } },	
+{ MODKEY,				XK_k,											focusstack,			{.i = -1 } },	
+{ MODKEY,				XK_h,											setmfact,			{.f = -0.05} },	
+{ MODKEY,				XK_l,											setmfact,			{.f = +0.05} },	
+{ MODKEY|ShiftMask,		XK_x,											spawn,				SHCMD("xkill") },	
+{ 0,					XK_Print,										spawn,				SHCMD("maim screenshots/screenshot_$(date '+%y%m%d%H%M%S').png; maim -o -u | xclip -selection clipboard -t image/png -i") },	
+{ MODKEY,				XK_Print,										spawn,				SHCMD("maim -s -o -u | xclip -selection clipboard -t image/png -i")},	
+{ MODKEY,				XK_space,										zoom,				{0} },	
+{ MODKEY,				XK_Tab,											view,				{0} },	
+{ MODKEY,				XK_q,											killclient,			{0} },	
+{ MODKEY,				XK_t,											setlayout,			{.v = &layouts[0]} },	
+{ MODKEY|ShiftMask,		XK_f,											setlayout,			{.v = &layouts[1]} },	
+{ MODKEY,				XK_u,											setlayout,			{.v = &layouts[2]} },	
+{ MODKEY,				XK_g,											setlayout,			{.v = &layouts[3]}},	
+{ MODKEY,				XK_f,											togglefullscr,		{0} },	
+{ MODKEY,				XK_0,											view,				{.ui = ~0 } },	
+{ MODKEY|ShiftMask,		XK_0,											tag,				{.ui = ~0 } },	
+{ MODKEY,				XK_comma,										focusmon,			{.i = -1 } },	
+{ MODKEY,				XK_period,	 									focusmon,			{.i = +1 } },	
+{ MODKEY|ShiftMask,		XK_comma,										tagmon,				{.i = -1 } },	
+{ MODKEY|ShiftMask,		XK_period,										tagmon,				{.i = +1 } },	
+	TAGKEYS(XK_1,			0)
+	TAGKEYS(XK_2,			1)
+	TAGKEYS(XK_3,			2)
+	TAGKEYS(XK_4,			3)
+	TAGKEYS(XK_5,			4)
+	TAGKEYS(XK_6,			5)
+	TAGKEYS(XK_7,			6)
+	TAGKEYS(XK_8,			7)
+	TAGKEYS(XK_9,			8)
+{ MODKEY|ShiftMask,		XK_q,											quit,				{0} },	
 };
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
