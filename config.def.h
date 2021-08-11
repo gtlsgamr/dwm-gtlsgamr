@@ -79,7 +79,7 @@ static Key keys[] = {
 { MODKEY|ShiftMask,		XK_n,											spawn,				SHCMD("filename=$(date '+%Y_%B_%d').md; touch ~/documents/notes/$filename && echo '-------------' >> ~/documents/notes/$filename && st -n quick_note -e nvim ~/documents/notes/$filename")},	
 { MODKEY,				XK_c,											spawn,				SHCMD("st -n quick_note -e bc -lq")},	
 { MODKEY,				XK_Return,	 									spawn,				{.v = termcmd } },	
-{ MODKEY|ShiftMask,		XK_Return,	 									spawn,				SHCMD("st -e tmux")},	
+{ MODKEY|ShiftMask,		XK_Return,	 									spawn,				SHCMD("st -e tmux attach")},	
 { MODKEY,				XK_b,											togglebar,			{0} },	
 { MODKEY,				XK_j,											focusstack,			{.i = +1 } },	
 { MODKEY,				XK_k,											focusstack,			{.i = -1 } },	
