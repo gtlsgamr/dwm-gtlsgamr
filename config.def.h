@@ -32,7 +32,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ NULL,       "quick_note",       NULL,       0,       1,           -1 },
+	{ NULL,       "centersmall",       NULL,       0,       1,           -1 },
 };
 
 /* layout(s) */
@@ -61,6 +61,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_macos_white, "-nf", col_gray1, "-sb", col_macos_gray, "-sf", col_gray1, NULL };
+static const char quicknotecommand[] = "filename=$(date '+%Y_%B_%d').md; touch ~/documents/notes/$filename && echo '-------------' >> ~/documents/notes/$filename && st -n centersmall -e nvim ~/documents/notes/$filename";
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
@@ -73,11 +74,11 @@ static Key keys[] = {
 { MODKEY,				XK_w,											spawn,				SHCMD("brave --force-device-scale-factor=1.15") },	
 { MODKEY,				XK_r,											spawn,				SHCMD("st -e fff")},	
 { MODKEY,				XK_d,											spawn,				{.v = dmenucmd } },	
-{ MODKEY,				XK_y,											spawn,				SHCMD("ytfzf  -D")},	
 { MODKEY,				XK_n,											spawn,				SHCMD("st -e nvim ")},	
 { MODKEY|ShiftMask,		XK_space,										togglefloating,		{0}},	
-{ MODKEY|ShiftMask,		XK_n,											spawn,				SHCMD("filename=$(date '+%Y_%B_%d').md; touch ~/documents/notes/$filename && echo '-------------' >> ~/documents/notes/$filename && st -n quick_note -e nvim ~/documents/notes/$filename")},	
-{ MODKEY,				XK_c,											spawn,				SHCMD("st -n quick_note -e bc -lq")},	
+{ MODKEY|ShiftMask,		XK_n,											spawn,				SHCMD(quicknotecommand)},	
+{ MODKEY,				XK_c,											spawn,				SHCMD("st -n centersmall -e bc -lq")},	
+{ MODKEY,				XK_e,											spawn,				SHCMD("st -f 'JetBrainsMono Nerd Font Mono:size=20' -n centersmall -e emoji")},	
 { MODKEY,				XK_Return,	 									spawn,				{.v = termcmd } },	
 { MODKEY|ShiftMask,		XK_Return,	 									spawn,				SHCMD("st -e tmux attach")},	
 { MODKEY,				XK_b,											togglebar,			{0} },	
