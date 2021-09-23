@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {  "SF Pro Display:style=SemiBold:size=14","NotoEmoji:size=14:antialias=true:autohint=true"};
-static const char dmenufont[]       = "SF Pro Display:style=SemiBold:size=14";
+static const char *fonts[]          = {  "SF Pro Text:style=SemiBold:size=14","NotoEmoji:size=14:antialias=true:autohint=true"};
+static const char dmenufont[]       = "SF Pro Text:style=SemiBold:size=14";
 
 static const char col_macos_white[]	= "#f5f5f5";
 static const char col_macos_gray[]	= "#C0BFC0";
@@ -32,7 +32,10 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ NULL,       "centersmall",       NULL,       0,       1,           -1 },
+	{ "discord",  NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "Steam",    NULL,       NULL,       0,       1,           -1 },
+	{ "steam_app_1404210",    NULL,       NULL,      0,       1,           -1 },
+	{ NULL,       "centersmall",       NULL,       0,       1,       -1 },
 };
 
 /* layout(s) */
@@ -71,7 +74,7 @@ static Key keys[] = {
 { 0,					XF86XK_AudioLowerVolume,						spawn,				SHCMD("pamixer --allow-boost -d 3; kill -44 $(pidof dwmblocks)") },	
 { 0,					XF86XK_MonBrightnessUp,							spawn,				SHCMD("xbacklight -inc 5; kill -44 $(pidof dwmblocks)") },	
 { 0,					XF86XK_MonBrightnessDown,						spawn,				SHCMD("xbacklight -dec 5; kill -44 $(pidof dwmblocks)") },	
-{ MODKEY,				XK_w,											spawn,				SHCMD("brave --force-device-scale-factor=1.15") },	
+{ MODKEY,				XK_w,											spawn,				SHCMD("ungoogled-chromium --force-device-scale-factor=1.15") },	
 { MODKEY,				XK_r,											spawn,				SHCMD("st -e fff")},	
 { MODKEY,				XK_d,											spawn,				{.v = dmenucmd } },	
 { MODKEY,				XK_n,											spawn,				SHCMD("st -e nvim ")},	
