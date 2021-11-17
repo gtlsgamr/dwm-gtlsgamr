@@ -5,8 +5,10 @@ static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {  "SF Pro Text:style=SemiBold:size=14","Material Design Icons:style=Regular:size=14"};
-static const char dmenufont[]       = "SF Pro Text:style=SemiBold:size=14";
+static const int horizpadbar        = 1;        /* horizontal padding for statusbar */
+static const int vertpadbar         = 5;        /* vertical padding for statusbar */
+static const char *fonts[]          = {  "SF Pro Display:style=SemiBold:size=12","Material Design Icons:style=Regular:size=12"};
+static const char dmenufont[]       = "SF Pro Display:style=SemiBold:size=12";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char col_macos_white[]	= "#f5f5f5";
@@ -25,8 +27,8 @@ static const char *colors[][3]      = {
 
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
-	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeNorm] = { OPAQUE, OPAQUE, OPAQUE},
+	[SchemeSel]  = { OPAQUE, OPAQUE, OPAQUE},
 };
  
 /* tagging */
@@ -50,10 +52,6 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "discord",  NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "Steam",    NULL,       NULL,       0,       1,           -1 },
-	{ "steam_app_1404210",    NULL,       NULL,      0,       1,           -1 },
 	{ NULL,       "centersmall",       NULL,       0,       1,       -1 },
 };
 
@@ -83,7 +81,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_macos_white, "-nf", col_gray1, "-sb", col_macos_gray, "-sf", col_gray1, NULL };
-static const char quicknotecommand[] = "touch ~/documents/notes/scratchpad.md && st -n centersmall -e nvim ~/documents/notes/scratchpad.md";
+static const char quicknotecommand[] = "touch ~/Documents/notes/scratchpad.md && st -n centersmall -e nvim ~/Documents/notes/scratchpad.md";
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
@@ -93,14 +91,14 @@ static Key keys[] = {
 { 0,					XF86XK_AudioLowerVolume,						spawn,				SHCMD("pamixer --allow-boost -d 3; kill -44 $(pidof dwmblocks)") },	
 { 0,					XF86XK_MonBrightnessUp,							spawn,				SHCMD("xbacklight -inc 5; kill -44 $(pidof dwmblocks)") },	
 { 0,					XF86XK_MonBrightnessDown,						spawn,				SHCMD("xbacklight -dec 5; kill -44 $(pidof dwmblocks)") },	
-{ MODKEY,				XK_w,											spawn,				SHCMD("ungoogled-chromium --force-device-scale-factor=1.15") },	
+{ MODKEY,				XK_w,											spawn,				SHCMD("ungoogled-chromium") },	
 { MODKEY,				XK_r,											spawn,				SHCMD("st -e fff")},	
 { MODKEY,				XK_d,											spawn,				{.v = dmenucmd } },	
 { MODKEY,				XK_n,											spawn,				SHCMD("st -e nvim ")},	
 { MODKEY|ShiftMask,		XK_space,										togglefloating,		{0}},	
 { MODKEY|ShiftMask,		XK_n,											spawn,				SHCMD(quicknotecommand)},	
 { MODKEY,				XK_c,											spawn,				SHCMD("st -n centersmall -e bc -lq")},	
-{ MODKEY,				XK_e,											spawn,				SHCMD("st -f 'JetBrainsMono Nerd Font Mono:size=20' -n centersmall -e emoji")},	
+{ MODKEY,				XK_e,											spawn,				SHCMD("st -f 'JetBrains Mono:size=16' -n centersmall -e emoji")},	
 { MODKEY,				XK_Return,	 									spawn,				{.v = termcmd } },	
 { MODKEY|ShiftMask,		XK_Return,	 									spawn,				SHCMD("st -e tmux attach")},	
 { MODKEY,				XK_b,											togglebar,			{0} },	
