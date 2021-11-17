@@ -7,12 +7,14 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 1;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 5;        /* vertical padding for statusbar */
-static const char *fonts[]          = {  "SF Pro Display:style=SemiBold:size=12","Material Design Icons:style=Regular:size=12"};
-static const char dmenufont[]       = "SF Pro Display:style=SemiBold:size=12";
+static const char *fonts[]          = {  "W95FA:style=Regular:size=16","Material Design Icons:style=Regular:size=12"};
+static const char dmenufont[]       = "W95FA:style=Regular:size=16";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
-static const char col_macos_white[]	= "#f5f5f5";
-static const char col_macos_gray[]	= "#C0BFC0";
+static const char col_win95_fg[]	= "#000000";
+static const char col_win95_bg[]	= "#C0C0C0";
+static const char col_win95_selected_bg[]	= "#000080";
+static const char col_win95_selected_text[]	= "#fff";
 static const char col_gray4[]       = "#fdf1c7";
 static const char col_gray3[]       = "#ebdbb2";
 static const char col_gray2[]       = "#3c3836";
@@ -21,8 +23,8 @@ static const char col_cyan[]        = "#7c8f8f";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_macos_gray, col_gray1,  col_gray1 },
-	[SchemeSel]  = { col_macos_white, col_gray1,  col_gray2  },
+	[SchemeNorm] = { col_win95_fg, col_win95_bg,  col_gray1 },
+	[SchemeSel]  = { col_win95_selected_text, col_win95_selected_bg,  col_gray2  },
 };
 
 static const unsigned int alphas[][3]      = {
@@ -80,7 +82,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_macos_white, "-nf", col_gray1, "-sb", col_macos_gray, "-sf", col_gray1, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_win95_bg, "-nf", col_win95_fg, "-sb", col_win95_selected_bg, "-sf", col_win95_selected_text, NULL };
 static const char quicknotecommand[] = "touch ~/Documents/notes/scratchpad.md && st -n centersmall -e nvim ~/Documents/notes/scratchpad.md";
 static const char *termcmd[]  = { "st", NULL };
 
