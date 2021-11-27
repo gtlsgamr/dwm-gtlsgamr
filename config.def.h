@@ -7,7 +7,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 1;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 5;        /* vertical padding for statusbar */
-static const char *fonts[]          = {  "W95FA:style=Regular:size=16","Material Design Icons:style=Regular:size=12"};
+static const char *fonts[]          = {  "W95FA:style=Regular:size=16","Material Icons:style=Regular:size=12"};
 static const char dmenufont[]       = "W95FA:style=Regular:size=16";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
