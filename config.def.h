@@ -81,7 +81,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_macos_white, "-nf", col_gray1, "-sb", col_macos_gray, "-sf", col_gray1, NULL };
-static const char quicknotecommand[] = "touch ~/Documents/notes/scratchpad.md && st -n centersmall -e nvim ~/Documents/notes/scratchpad.md";
+static const char quicknotecommand[] = "touch ~/Documents/notes/scratchpad.md && alacritty -t centersmall -e nvim ~/Documents/notes/scratchpad.md";
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
@@ -92,15 +92,15 @@ static Key keys[] = {
 { 0,					XF86XK_MonBrightnessUp,							spawn,				SHCMD("xbacklight -inc 5; kill -35 $(cat ~/.cache/pidofbar)") },	
 { 0,					XF86XK_MonBrightnessDown,						spawn,				SHCMD("xbacklight -dec 5; kill -35 $(cat ~/.cache/pidofbar)") },	
 { MODKEY,				XK_w,											spawn,				SHCMD("ungoogled-chromium") },	
-{ MODKEY,				XK_r,											spawn,				SHCMD("st -e fff")},	
+{ MODKEY,				XK_r,											spawn,				SHCMD("alacritty -e fff")},	
 { MODKEY,				XK_d,											spawn,				{.v = dmenucmd } },	
-{ MODKEY,				XK_n,											spawn,				SHCMD("st -e nvim ")},	
+{ MODKEY,				XK_n,											spawn,				SHCMD("alacritty -e nvim ")},	
 { MODKEY|ShiftMask,		XK_space,										togglefloating,		{0}},	
 { MODKEY|ShiftMask,		XK_n,											spawn,				SHCMD(quicknotecommand)},	
-{ MODKEY,				XK_c,											spawn,				SHCMD("st -n centersmall -e bc -lq")},	
-{ MODKEY,				XK_e,											spawn,				SHCMD("st -f 'JetBrains Mono:size=16' -n centersmall -e emoji")},	
+{ MODKEY,				XK_c,											spawn,				SHCMD("alacritty -t centersmall -e bc -lq")},	
+{ MODKEY,				XK_e,											spawn,				SHCMD("alacritty -t centersmall -e emoji")},	
 { MODKEY,				XK_Return,	 									spawn,				{.v = termcmd } },	
-{ MODKEY|ShiftMask,		XK_Return,	 									spawn,				SHCMD("st -e tmux attach")},	
+{ MODKEY|ShiftMask,		XK_Return,	 									spawn,				SHCMD("alacritty -e tmux attach")},	
 { MODKEY,				XK_b,											togglebar,			{0} },	
 { MODKEY,				XK_j,											focusstack,			{.i = +1 } },	
 { MODKEY,				XK_k,											focusstack,			{.i = -1 } },	
