@@ -7,8 +7,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 1;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 5;        /* vertical padding for statusbar */
-static const char *fonts[]          = {  "W95FA:style=Regular:size=16","Material Icons:style=Regular:size=12"};
-static const char dmenufont[]       = "W95FA:style=Regular:size=16";
+static const char *fonts[]          = {  "W95FA:style=Bold:size=16","Material Icons:style=Regular:size=12"};
+static const char dmenufont[]       = "W95FA:style=Bold:size=16";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char col_win95_fg[]	= "#000000";
@@ -93,7 +93,7 @@ static Key keys[] = {
 { 0,					XF86XK_AudioLowerVolume,						spawn,				SHCMD("pamixer --allow-boost -d 3; kill -34 $(cat ~/.cache/pidofbar)") },	
 { 0,					XF86XK_MonBrightnessUp,							spawn,				SHCMD("xbacklight -inc 5; kill -35 $(cat ~/.cache/pidofbar)") },	
 { 0,					XF86XK_MonBrightnessDown,						spawn,				SHCMD("xbacklight -dec 5; kill -35 $(cat ~/.cache/pidofbar)") },	
-{ MODKEY,				XK_w,											spawn,				SHCMD("brave") },	
+{ MODKEY,				XK_w,											spawn,				SHCMD("$BROWSER") },	
 { MODKEY,				XK_r,											spawn,				SHCMD("st -e fff")},	
 { MODKEY,				XK_d,											spawn,				{.v = dmenucmd } },	
 { MODKEY,				XK_n,											spawn,				SHCMD("st -e nvim ")},	
@@ -102,7 +102,7 @@ static Key keys[] = {
 { MODKEY,				XK_c,											spawn,				SHCMD("st -t centersmall -e bc -lq")},	
 { MODKEY,				XK_e,											spawn,				SHCMD("st -t centersmall -e emoji")},	
 { MODKEY,				XK_Return,	 									spawn,				{.v = termcmd } },	
-{ MODKEY|ShiftMask,		XK_Return,	 									spawn,				SHCMD("st -e tmux attach")},	
+{ MODKEY|ShiftMask,		XK_Return,	 									spawn,				SHCMD("st -e 'tmux attach || tmux new-session -s main'")},	
 { MODKEY,				XK_b,											togglebar,			{0} },	
 { MODKEY,				XK_j,											focusstack,			{.i = +1 } },	
 { MODKEY,				XK_k,											focusstack,			{.i = -1 } },	
