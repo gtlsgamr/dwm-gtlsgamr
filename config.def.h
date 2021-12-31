@@ -93,7 +93,7 @@ static Key keys[] = {
 { 0,					XF86XK_AudioLowerVolume,						spawn,				SHCMD("pamixer --allow-boost -d 3; kill -34 $(cat ~/.cache/pidofbar)") },	
 { 0,					XF86XK_MonBrightnessUp,							spawn,				SHCMD("xbacklight -inc 5; kill -35 $(cat ~/.cache/pidofbar)") },	
 { 0,					XF86XK_MonBrightnessDown,						spawn,				SHCMD("xbacklight -dec 5; kill -35 $(cat ~/.cache/pidofbar)") },	
-{ MODKEY,				XK_w,											spawn,				SHCMD("$BROWSER") },	
+{ MODKEY,				XK_w,											spawn,				SHCMD("firefox") },	
 { MODKEY,				XK_r,											spawn,				SHCMD("st -e fff")},	
 { MODKEY,				XK_d,											spawn,				{.v = dmenucmd } },	
 { MODKEY,				XK_n,											spawn,				SHCMD("st -e nvim ")},	
