@@ -23,8 +23,8 @@ static const char col_cyan[]        = "#7c8f8f";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_win95_fg, col_win95_bg,  col_gray1 },
-	[SchemeSel]  = { col_win95_selected_text, col_win95_selected_bg,  col_gray2  },
+	[SchemeNorm] = { col_win95_fg, col_gray3,  col_gray1 },
+	[SchemeSel]  = { col_win95_selected_text, col_gray2,  col_gray2  },
 };
 
 static const unsigned int alphas[][3]      = {
@@ -35,17 +35,6 @@ static const unsigned int alphas[][3]      = {
  
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
-
-static const char *tagsel[][2] = {
-	{ "#ffffff", "#ff5555" },
-	{ "#ffffff", "#ff7f00" },
-	{ "#000000", "#f1fa8c" },
-	{ "#000000", "#50fa7b" },
-	{ "#ffffff", "#4b0082" },
-	{ "#ffffff", "#9400d3" }
-};
-
-static const unsigned int tagalpha[] = { OPAQUE, baralpha };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -82,7 +71,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_win95_bg, "-nf", col_win95_fg, "-sb", col_win95_selected_bg, "-sf", col_win95_selected_text, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray3, "-nf", col_win95_fg, "-sb", col_gray2, "-sf", col_win95_selected_text, NULL };
 static const char quicknotecommand[] = "touch ~/Documents/notes/scratchpad.md && st -t centersmall -e nvim ~/Documents/notes/scratchpad.md";
 static const char *termcmd[]  = { "st", NULL };
 
