@@ -97,7 +97,7 @@ static Key keys[] = {
 { MODKEY,				XK_n,											spawn,				SHCMD("st -e nvim ")},	
 { MODKEY|ShiftMask,		XK_space,										togglefloating,		{0}},	
 { MODKEY|ShiftMask,		XK_n,											spawn,				SHCMD(quicknotecommand)},	
-{ MODKEY,				XK_c,											spawn,				SHCMD("st -t centersmall -e bc -lq")},	
+{ MODKEY,				XK_c,											spawn,				SHCMD("st -t centersmall -f 'mono:size=18' -e bc -lq")},	
 { MODKEY,				XK_e,											spawn,				SHCMD("st -t centersmall -e emoji")},	
 { MODKEY,				XK_Return,	 									spawn,				{.v = termcmd } },	
 { MODKEY|ShiftMask,		XK_Return,	 									spawn,				SHCMD("st -e tmux attach")},	
