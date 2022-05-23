@@ -7,12 +7,11 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 1;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 5;        /* vertical padding for statusbar */
-static const char *fonts[]          = {  "W95FA:style=Bold:size=16","Material Icons:style=Regular:size=12"};
-static const char dmenufont[]       = "W95FA:style=Bold:size=16";
+static const char *fonts[]          = {  "SF Pro Display:style=Regular:size=14","Material Icons:style=Regular:size=12"};
+static const char dmenufont[]       = "SF Pro Display:style=Regular:size=14";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
-static const char col_win95_fg[]	= "#000000";
-static const char col_win95_bg[]	= "#C0C0C0";
+static const char col_win95_bg[]	= "#000";
 static const char col_win95_selected_bg[]	= "#000080";
 static const char col_win95_selected_text[]	= "#fff";
 static const char col_gray4[]       = "#fdf1c7";
@@ -23,8 +22,8 @@ static const char col_cyan[]        = "#7c8f8f";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_win95_fg, col_win95_bg,  col_gray1 },
-	[SchemeSel]  = { col_win95_selected_text, col_win95_selected_bg,  col_gray2  },
+	[SchemeNorm] = { col_win95_selected_text, col_win95_bg,  col_gray1 },
+	[SchemeSel] = { col_win95_selected_text, col_win95_bg,  col_gray1 },
 };
 
 static const unsigned int alphas[][3]      = {
@@ -76,8 +75,8 @@ static const char *dmenucmd[] = {
 	"-m", dmenumon,
 	"-fn", dmenufont,
 	"-nb", col_win95_bg,
-	"-nf", col_win95_fg,
-	"-sb", col_win95_selected_bg,
+	"-nf", col_win95_selected_text,
+	"-sb", col_win95_bg,
 	"-sf", col_win95_selected_text,
 	NULL
 };
