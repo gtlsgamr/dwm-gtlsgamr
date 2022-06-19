@@ -6,14 +6,14 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 1;        /* horizontal padding for statusbar */
-static const int vertpadbar         = 5;        /* vertical padding for statusbar */
-static const char *fonts[]          = {  "SF Mono:style=Regular:size=14","Material Icons:style=Regular:size=12"};
-static const char dmenufont[]       = "SF Mono:style=Regular:size=14";
+static const int vertpadbar         = 1;        /* vertical padding for statusbar */
+static const char *fonts[]          = {  "SF Mono:style=Regular:size=12","Material Icons:style=Regular:size=12"};
+static const char dmenufont[]       = "SF Mono:style=Regular:size=12";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
-static const char col_win95_bg[]	= "#000";
+static const char col_fg[]	= "#c6c8d1";
 static const char col_win95_selected_bg[]	= "#000080";
-static const char col_win95_selected_text[]	= "#fff";
+static const char col_bg[]	= "#161821";
 static const char col_gray4[]       = "#fdf1c7";
 static const char col_gray3[]       = "#ebdbb2";
 static const char col_gray2[]       = "#3c3836";
@@ -22,8 +22,8 @@ static const char col_cyan[]        = "#7c8f8f";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_win95_selected_text, col_win95_bg,  col_gray1 },
-	[SchemeSel] = { col_win95_selected_text, col_win95_bg,  col_gray1 },
+	[SchemeNorm] = { col_fg, col_bg,  col_gray1 },
+	[SchemeSel] = { col_fg, col_bg,  col_gray1 },
 };
 
 static const unsigned int alphas[][3]      = {
@@ -33,7 +33,7 @@ static const unsigned int alphas[][3]      = {
 };
  
 /* tagging */
-static const char *tags[] = { "􏿽", "2", "3", "4", "5", "6" };
+static const char *tags[] = { "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -74,10 +74,10 @@ static const char *dmenucmd[] = {
 	"dmenu_run",
 	"-m", dmenumon,
 	"-fn", dmenufont,
-	"-nb", col_win95_bg,
-	"-nf", col_win95_selected_text,
-	"-sb", col_win95_bg,
-	"-sf", col_win95_selected_text,
+	"-nb", col_bg,
+	"-nf", col_fg,
+	"-sb", col_bg,
+	"-sf", col_fg,
 	NULL
 };
 static const char quicknotecommand[] = "touch ~/Documents/notes/scratchpad.md && st -t centersmall -e nvim ~/Documents/notes/scratchpad.md";
@@ -90,7 +90,7 @@ static Key keys[] = {
 { 0,					XF86XK_AudioLowerVolume,						spawn,				SHCMD("pamixer --allow-boost -d 3; kill -34 $(cat ~/.cache/pidofbar)") },	
 { 0,					XF86XK_MonBrightnessUp,							spawn,				SHCMD("xbacklight -inc 5; kill -35 $(cat ~/.cache/pidofbar)") },	
 { 0,					XF86XK_MonBrightnessDown,						spawn,				SHCMD("xbacklight -dec 5; kill -35 $(cat ~/.cache/pidofbar)") },	
-{ MODKEY,				XK_w,											spawn,				SHCMD("chromium") },	
+{ MODKEY,				XK_w,											spawn,				SHCMD("firefox") },	
 { MODKEY,				XK_r,											spawn,				SHCMD("st -e fff")},	
 { MODKEY,				XK_d,											spawn,				{.v = dmenucmd } },	
 { MODKEY,				XK_n,											spawn,				SHCMD("st -e nvim ")},	
