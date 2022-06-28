@@ -1,29 +1,26 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 1;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 5;        /* vertical padding for statusbar */
-static const char *fonts[]          = {  "SF Mono:style=Regular:size=14","Material Icons:style=Regular:size=12"};
-static const char dmenufont[]       = "SF Mono:style=Regular:size=14";
+static const char *fonts[]          = {  "Fixedsys Excelsior:size=13:antialias=true:autohint=false","Material Icons:style=Regular:size=12"};
+static const char dmenufont[]       = "Fixedsys Excelsior:size=13:antialias=true:autohint=false";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
-static const char col_win95_bg[]	= "#000";
-static const char col_win95_selected_bg[]	= "#000080";
-static const char col_win95_selected_text[]	= "#fff";
-static const char col_gray4[]       = "#fdf1c7";
-static const char col_gray3[]       = "#ebdbb2";
-static const char col_gray2[]       = "#3c3836";
-static const char col_gray1[]       = "#080808";
-static const char col_cyan[]        = "#7c8f8f";
+static const char col_gray1[]       = "#d3d7cf";
+static const char col_gray2[]       = "#d3d7cf";
+static const char col_gray3[]       = "#000000";
+static const char col_gray4[]       = "#ffffff";
+static const char col_cyan[]        = "#0000aa";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_win95_selected_text, col_win95_bg,  col_gray1 },
-	[SchemeSel] = { col_win95_selected_text, col_win95_bg,  col_gray1 },
+	[SchemeNorm] = { col_gray3, col_gray1, col_cyan },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_gray2  },
 };
 
 static const unsigned int alphas[][3]      = {
@@ -74,10 +71,10 @@ static const char *dmenucmd[] = {
 	"dmenu_run",
 	"-m", dmenumon,
 	"-fn", dmenufont,
-	"-nb", col_win95_bg,
-	"-nf", col_win95_selected_text,
-	"-sb", col_win95_bg,
-	"-sf", col_win95_selected_text,
+	"-nb", col_gray1,
+	"-nf", col_gray3,
+	"-sb", col_cyan,
+	"-sf", col_gray4,
 	NULL
 };
 static const char quicknotecommand[] = "touch ~/Documents/notes/scratchpad.md && st -t centersmall -e nvim ~/Documents/notes/scratchpad.md";
