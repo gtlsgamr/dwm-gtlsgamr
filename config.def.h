@@ -88,7 +88,7 @@ static Key keys[] = {
 { 0,					XF86XK_MonBrightnessUp,							spawn,				SHCMD("xbacklight -inc 5; kill -35 $(cat ~/.cache/pidofbar)") },	
 { 0,					XF86XK_MonBrightnessDown,						spawn,				SHCMD("xbacklight -dec 5; kill -35 $(cat ~/.cache/pidofbar)") },	
 { MODKEY,				XK_w,											spawn,				SHCMD("firefox") },	
-{ MODKEY,				XK_r,											spawn,				SHCMD("st -e fff")},	
+{ MODKEY,				XK_r,											spawn,				SHCMD("setbg")},	
 { MODKEY,				XK_d,											spawn,				{.v = dmenucmd } },	
 { MODKEY,				XK_n,											spawn,				SHCMD("st -e nvim ")},	
 { MODKEY|ShiftMask,		XK_space,										togglefloating,		{0}},	
