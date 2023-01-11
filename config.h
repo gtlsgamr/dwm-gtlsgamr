@@ -5,6 +5,10 @@ static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
+static const int usealtbar          = 1;        /* 1 means use non-dwm status bar */
+static const char *altbarclass      = "Polybar"; /* Alternate bar class name */
+static const char *alttrayname      = "tray";    /* Polybar tray instance name */
+static const char *altbarcmd        = "$HOME/bar.sh"; /* Alternate bar launch command */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
 static int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
@@ -12,15 +16,15 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 1;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 5;        /* vertical padding for statusbar */
-static const char *fonts[]          = {"Fixedsys Excelsior:size=13:antialias=true:autohint=false","Material Icons:style=Regular:size=12"};
-static const char dmenufont[]       = "Fixedsys Excelsior:size=13:antialias=true:autohint=false";
+static const char *fonts[]          = {"SF Pro Display:size=13:antialias=true:autohint=false","Material Icons:style=Regular:size=12"};
+static const char dmenufont[]       = "SF Pro Display:size=13:antialias=true:autohint=false";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char col_gray1[]       = "#d3d7cf";
 static const char col_gray2[]       = "#d3d7cf";
 static const char col_gray3[]       = "#000000";
-static const char col_gray4[]       = "#ffffff";
-static const char col_cyan[]        = "#0000aa";
+static const char col_gray4[]       = "#000";
+static const char col_cyan[]        = "#fff";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -91,7 +95,7 @@ static const char audiomutecommand[] = "pamixer -t; kill -34 $(cat ~/.cache/pido
 static const char audioraisecommand[] = "pamixer --allow-boost -i 3; kill -34 $(cat ~/.cache/pidofbar)";
 static const char audiolowercommand[] = "pamixer --allow-boost -d 3; kill -34 $(cat ~/.cache/pidofbar)";
 static const char brightupcommand[] = "xbacklight -inc 5; kill -35 $(cat ~/.cache/pidofbar)";
-static const char brightdowncommand[] = "xbacklight -dec 5; kill -35 $(cat ~/.cache/pidofbar); echo `date` >> ~/.keypress.log";
+static const char brightdowncommand[] = "xbacklight -dec 5; kill -35 $(cat ~/.cache/pidofbar)";
 static const char uplscrnshotcommand[] = "maim -s -o -u test.png && upfile test.png && rm test.png";
 static const char cpyscrnshotcommand[] = "maim -s -o -u | xclip -selection clipboard -t image/png -i";
 static const char fullscrnshotcommand[] = "maim ~/Documents/screenshots/screenshot_$(date '+%y%m%d%H%M%S').png; maim -o -u | xclip -selection clipboard -t image/png -i";
